@@ -3,7 +3,7 @@
 }
 
 .title {
-  font-size: 54px;
+  font-size: 64px;
   font-weight: 300;
 }
 
@@ -49,26 +49,46 @@
   cursor: pointer;
   font-size: 18px;
 }
-/* 
+
 @media screen and (max-width: 1280px) {
   .title {
-    font-size: 72px;
+    font-size: 56px;
+  }
+  .postTitle {
+    font-size: 40px;
+  }
+  
+  .postDesc {
+    font-size: 20px;
   }
 }
 
 @media screen and (max-width: 1024px) {
   .title {
-    font-size: 64px;
+    font-size: 48px;
   }
-
+  /* dont show image below laptop screens */
   .imgContainer {
     display: none;
+  }
+  .postTitle {
+    font-size: 32px;
+  }
+  
+  .postDesc {
+    font-size: 20px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .title {
-    font-size: 48px;
+    font-size: 36px;
+  }
+  .postTitle {
+    font-size: 28px;
+  }
+  .postDesc {
+    font-size: 20px;
   }
 }
 
@@ -76,4 +96,4 @@
   .title {
     font-size: 36px;
   }
-} */
+}
