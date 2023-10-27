@@ -12,6 +12,7 @@ export default function Home() {
   <div className={styles.container}>
     <Featured/>
     <CategoryList/>
+    {/* has 2 children in size ratio 5:2 */}
     <div className={styles.content}>
       <CardList/>
       <Menu/>

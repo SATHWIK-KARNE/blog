@@ -3,7 +3,7 @@
 }
 
 .title {
-  font-size: 64px;
+  font-size: 56px;
   font-weight: 300;
 }
 
@@ -16,12 +16,13 @@
 
 .imgContainer {
   flex: 1;
-  height: 500px;
+  height: 400px;
   position: relative;
 }
 
 .image {
   object-fit: cover;
+  border-radius: 2%;
 }
 
 .textContainer {
