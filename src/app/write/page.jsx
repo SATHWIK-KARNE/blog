@@ -4,8 +4,10 @@ import React, { useState, useEffect } from "react";
 import styles from "./writePage.module.css";
 import Image from "next/image";
 
-import dynamic from 'next/dynamic';
+// we are using quill on client side but we get document reference error when server access it(cuz next.js is SSR)
+//  To fix the "ReferenceError: document is not defined" error, you should ensure that the code related to Quill is executed only on the client side. You can achieve this by wrapping the code with a useEffect hook to run it after the component has mounted on the client side.
 
+import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 import "react-quill/dist/quill.bubble.css"; // Import the styles
