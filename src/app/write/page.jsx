@@ -11,8 +11,13 @@ import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
 import "react-quill/dist/quill.bubble.css"; // Import the styles
+import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 const WritePage = () => {
+  const { status } = useSession();
+  const router = useRouter();
+
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
 
@@ -20,9 +25,16 @@ const WritePage = () => {
     // Initialize Quill here, but make sure it runs on the client side.
     if (typeof window !== "undefined") {
       const quill = require("quill");
-      // Your Quill setup code here
     }
   }, []);
+
+  if (status === "loading") {
+    return <div className={styles.loading}>Loading...</div>;
+  }
+  // when user logged in=> redirect him to homepage
+  if (status === "authenticated") {
+    router.push("/");
+  }
 
   return (
     <div className={styles.container}>

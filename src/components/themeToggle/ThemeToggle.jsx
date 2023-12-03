@@ -1,27 +1,29 @@
-"use client";
-
-import React, { useContext } from "react";
+"use client"
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./themeToggle.module.css";
 import Image from "next/image";
 import { ThemeContext } from "@/context/ThemeContext";
 
-// there will be 2 images for themes which will be toggled
-// both are at 2 ends and only 1 is shown at a time cuz the ball moves on top of any 1 image hiding other
-// this switching functionality implemented using context API
-
 const ThemeToggle = () => {
   const { theme, toggle } = useContext(ThemeContext);
+  const [isClient, setIsClient] = useState(false);
 
-  // console.log(theme)
+  // Prop 'style' did not match error=> mismatch between CSR and SSR styling
+  // to avoid this render styles only on CSR
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <div
       className={styles.container}
       onClick={toggle}
       style={
-        theme === "dark"
-          ? { backgroundColor: "white" }
-          : {  backgroundColor: "black" }
+        isClient
+          ? (theme === "dark"
+              ? { backgroundColor: "white" }
+              : { backgroundColor: "black" })
+          : {} // Empty object for SSR to avoid style mismatch
       }
     >
       <Image
@@ -34,9 +36,12 @@ const ThemeToggle = () => {
       <div
         className={styles.ball}
         style={
-          theme === "dark"
-            ? { left: 1, background: "#0f172a" }
-            : { right: 1, background: "white" }
+          isClient
+            ? {
+                [theme === 'dark' ? 'left' : 'right']: '1px',
+                background: theme === 'dark' ? '#0f172a' : 'white'
+              }
+            : {} // Empty object for SSR to avoid style mismatch
         }
       ></div>
       <Image
